@@ -14,7 +14,7 @@ const Contact = () => {
     setMessage('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/contact', {
+      const res = await fetch('https://webboosters.onrender.com/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -46,6 +46,7 @@ const Contact = () => {
           onChange={handleChange}
           required
         /><br /><br />
+
         <input
           type="email"
           name="email"
@@ -54,13 +55,15 @@ const Contact = () => {
           onChange={handleChange}
           required
         /><br /><br />
+
         <textarea
           name="message"
           placeholder="Your Message"
           value={formData.message}
           onChange={handleChange}
           required
-        /><br /><br />
+        ></textarea><br /><br />
+
         <button type="submit">Send Message</button>
       </form>
     </div>

@@ -1,5 +1,5 @@
-// Blogs.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Blogs.css';
 
 function Blogs() {
@@ -13,7 +13,7 @@ function Blogs() {
         <p>
           Explore the most popular JavaScript frameworks and libraries developers are using in 2025, including React, Vue, and more.
         </p>
-        <a href="#">Read Full Blog</a>
+        <Link to="/blog/js-frameworks">Read Full Blog</Link>
       </section>
 
       <section className="blog">
@@ -22,7 +22,7 @@ function Blogs() {
         <p>
           MERN stack continues to be the go-to for full stack developers. Learn why it's powerful and how to get started.
         </p>
-        <a href="#">Read Full Blog</a>
+        <Link to="/blog/mern-stack">Read Full Blog</Link>
       </section>
 
       <section className="blog">
@@ -31,7 +31,7 @@ function Blogs() {
         <p>
           Learn how to reduce load time, improve SEO scores, and create faster websites using modern optimization techniques.
         </p>
-        <a href="#">Read Full Blog</a>
+        <Link to="/blog/performance">Read Full Blog</Link>
       </section>
     </div>
   );

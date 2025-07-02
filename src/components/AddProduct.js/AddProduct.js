@@ -8,7 +8,6 @@ function AddProduct() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (!name || !price) {
       setMessage('❌ Please fill in both name and price');
       return;
@@ -17,7 +16,7 @@ function AddProduct() {
     const product = { name, price };
 
     try {
-      const response = await fetch('http://localhost:5000/api/products', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

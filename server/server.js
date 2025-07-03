@@ -6,26 +6,30 @@ require('dotenv').config();
 // Models
 const Post = require('./models/Post');
 const Contact = require('./models/Contact');
-const User = require('./models/User'); // ✅ Your user model
+const User = require('./models/User');
 
-// ✅ Initialize the app FIRST before using it
+// Initialize app
 const app = express();
 
-// ✅ Middleware
-app.use(cors());
+// Middleware
+app.use(cors({
+  origin: 'https://webboosters-frontend.onrender.com', // 👈 Replace with your actual frontend URL
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(express.json());
 
-// ✅ Connect to MongoDB
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB connected'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
-// ✅ Routes
+// Routes
 app.get('/', (req, res) => {
   res.send('🌐 Web Boosters API running');
 });
 
-// ✅ Users
+// Users
 app.get('/users', async (req, res) => {
   try {
     const users = await User.find();
@@ -45,7 +49,7 @@ app.post('/users', async (req, res) => {
   }
 });
 
-// ✅ Contacts
+// Contacts
 app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, message } = req.body;
@@ -66,7 +70,7 @@ app.get('/api/contact', async (req, res) => {
   }
 });
 
-// ✅ Posts
+// Posts
 app.get('/api/posts', async (req, res) => {
   try {
     const posts = await Post.find();
@@ -86,6 +90,6 @@ app.post('/api/posts', async (req, res) => {
   }
 });
 
-// ✅ Start the server
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

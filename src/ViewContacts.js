@@ -7,22 +7,25 @@ const ViewContacts = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('⏳ Fetching contacts...');
-    fetch('http://localhost:5000/api/contact')
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch contacts');
-        return res.json();
-      })
-      .then((data) => {
+    const fetchContacts = async () => {
+      console.log('⏳ Fetching contacts from:', process.env.REACT_APP_API_URL);
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/contact`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch contacts');
+        }
+        const data = await response.json();
         console.log('✅ Fetched contacts:', data);
         setContacts(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error('❌ Error:', err);
+      } catch (err) {
+        console.error('❌ Error fetching contacts:', err);
         setError('Failed to load contact messages.');
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchContacts();
   }, []);
 
   return (

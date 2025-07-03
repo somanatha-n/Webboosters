@@ -8,6 +8,9 @@ body {
 
 .app {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 nav {
@@ -28,43 +31,46 @@ nav a:hover {
 
 /* Main content area styling */
 main {
-  padding: 7rem;
+  padding-top: 7rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  flex: 1;
 }
 
 /* For Tablet and Larger Devices (768px and above) */
 @media (min-width: 768px) {
   body {
-    font-size: 16px;  /* Larger text for tablets */
+    font-size: 16px;
   }
 
   main {
-    padding: 10rem;  /* Increased padding for larger screens */
+    padding-top: 10rem;
   }
 
   nav {
-    padding: 1rem;  /* Adjust padding for nav on larger screens */
+    padding: 1rem;
   }
 
   nav a {
-    font-size: 18px;  /* Slightly larger text for nav links */
+    font-size: 18px;
   }
 }
 
 /* For Desktop Devices (1024px and above) */
 @media (min-width: 1024px) {
   body {
-    font-size: 18px;  /* Even larger text for desktop screens */
+    font-size: 18px;
   }
 
   main {
-    padding: 12rem;  /* More padding for large screens */
+    padding-top: 12rem;
   }
 
   nav {
-    padding: 1.5rem;  /* More padding for nav on desktop */
+    padding: 1.5rem;
   }
 
   nav a {
-    font-size: 20px;  /* Even larger font size for nav links on desktop */
+    font-size: 20px;
   }
 }

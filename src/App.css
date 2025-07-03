@@ -1,4 +1,4 @@
-/* App.css */
+/* Base Styles for Mobile Devices */
 body {
   margin: 0;
   padding: 0;
@@ -26,6 +26,45 @@ nav a:hover {
   color: #99b5bf;
 }
 
+/* Main content area styling */
 main {
   padding: 7rem;
+}
+
+/* For Tablet and Larger Devices (768px and above) */
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;  /* Larger text for tablets */
+  }
+
+  main {
+    padding: 10rem;  /* Increased padding for larger screens */
+  }
+
+  nav {
+    padding: 1rem;  /* Adjust padding for nav on larger screens */
+  }
+
+  nav a {
+    font-size: 18px;  /* Slightly larger text for nav links */
+  }
+}
+
+/* For Desktop Devices (1024px and above) */
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px;  /* Even larger text for desktop screens */
+  }
+
+  main {
+    padding: 12rem;  /* More padding for large screens */
+  }
+
+  nav {
+    padding: 1.5rem;  /* More padding for nav on desktop */
+  }
+
+  nav a {
+    font-size: 20px;  /* Even larger font size for nav links on desktop */
+  }
 }

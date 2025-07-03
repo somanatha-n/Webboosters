@@ -6,14 +6,13 @@ require('dotenv').config();
 // Models
 const Post = require('./models/Post');
 const Contact = require('./models/Contact');
-const User = require('./models/User');
 
 // Initialize app
 const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://webboosters-frontend.onrender.com', // 👈 Replace with your actual frontend URL
+  origin: 'https://webboosters-frontend.onrender.com', // 👈 your frontend
   methods: ['GET', 'POST'],
   credentials: true
 }));
@@ -29,27 +28,9 @@ app.get('/', (req, res) => {
   res.send('🌐 Web Boosters API running');
 });
 
-// Users
-app.get('/users', async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// 🚫 Removed User routes
 
-app.post('/users', async (req, res) => {
-  try {
-    const user = new User(req.body);
-    await user.save();
-    res.status(201).json({ message: '✅ User created', user });
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
-
-// Contacts
+// ✅ Contacts
 app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, message } = req.body;
@@ -70,7 +51,7 @@ app.get('/api/contact', async (req, res) => {
   }
 });
 
-// Posts
+// ✅ Posts
 app.get('/api/posts', async (req, res) => {
   try {
     const posts = await Post.find();
@@ -91,5 +72,5 @@ app.post('/api/posts', async (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

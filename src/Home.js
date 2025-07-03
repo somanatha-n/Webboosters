@@ -1,8 +1,26 @@
-// Home.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 
 function Home() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/api/posts`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch posts');
+        return res.json();
+      })
+      .then((data) => {
+        setPosts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error:', err);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div
       className="home-page"
@@ -32,6 +50,25 @@ function Home() {
           <div className="service-card">🚀 Performance Optimization</div>
           <div className="service-card">📈 SEO & Marketing</div>
         </div>
+      </section>
+
+      {/* Dynamic Posts from Backend */}
+      <section className="posts-section">
+        <h2>Latest Posts</h2>
+        {loading ? (
+          <p>Loading posts...</p>
+        ) : posts.length === 0 ? (
+          <p>No posts available.</p>
+        ) : (
+          <ul className="post-list">
+            {posts.map((post) => (
+              <li key={post._id} className="post-card">
+                <h3>{post.title}</h3>
+                <p>{post.content}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       {/* Call to Action */}
